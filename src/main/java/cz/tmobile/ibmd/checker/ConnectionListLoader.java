@@ -6,8 +6,10 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class ConnectionListLoader {
+    // Funkce která čte soubor pomocí BufferedReadru
     public ConnectionList load(String filename) throws IOException {
         BufferedReader reader;
+        // Vytvořen objekt BufferedReader
         reader = new BufferedReader(new FileReader(filename));
         String line = reader.readLine();
         while (line != null) {
