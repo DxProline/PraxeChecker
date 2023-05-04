@@ -6,17 +6,20 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class ConnectionListLoader {
-    // Funkce která čte soubor pomocí BufferedReadru
+    // Funkce která načítá soubor pomocí BufferedReadru
     public ConnectionList load(String filename) throws IOException {
         BufferedReader reader;
+        ConnectionList connectionList;
         // Vytvořen objekt BufferedReader
         reader = new BufferedReader(new FileReader(filename));
+        connectionList = new ConnectionList();
         String line = reader.readLine();
+        //Null = dokud nedosáhne konec souboru
         while (line != null) {
-            System.out.println(line);
+            connectionList.getConnections().add(new Connection(line," ", " ",0));
             // přečte další řádek
             line = reader.readLine();
         }
-        return null;
+        return connectionList;
     }
 }
