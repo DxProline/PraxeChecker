@@ -12,11 +12,17 @@ public class ConnectionListLoader {
         ConnectionList connectionList;
         // Vytvořen objekt BufferedReader
         reader = new BufferedReader(new FileReader(filename));
+
         connectionList = new ConnectionList();
         String line = reader.readLine();
+        //Rozdělí řádek načtený ze souboru na sloupce oddělené středníkem
+        String[] output = line.split(";");
+
         //Null = dokud nedosáhne konec souboru
         while (line != null) {
-            connectionList.getConnections().add(new Connection(line," ", " ",0));
+            //převede port na Integer a nahradí tak Output 6
+            int port = Integer.parseInt(output[6]);
+            connectionList.getConnections().add(new Connection(output[0], output[1], output[2],output[3], output[4], output[5], port));
             // přečte další řádek
             line = reader.readLine();
         }
