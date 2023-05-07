@@ -6,7 +6,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
         ConnectionListLoader connectionListLoader = new ConnectionListLoader();
         ProcessListLoader processListLoader = new ProcessListLoader();
-        Result result = new Result();
+        Checker checker = new Checker();
         //Načte na soubor Connection List který dostane na vstup.
         ConnectionList connectionList = connectionListLoader.load("D:\\Download\\ConnectionList.txt");
         ProcessList processList = processListLoader.load("D:\\Download\\ProcessList.txt");
