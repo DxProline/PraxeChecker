@@ -11,7 +11,6 @@ public class ProcessListLoader {
         ProcessList processList = new ProcessList();
         // Vytvořen objekt BufferedReader
         reader = new BufferedReader(new FileReader(filename));
-        ProcessList ProcessList = new ProcessList();
         String line = reader.readLine();
 
         //Null = dokud nedosáhne konec souboru
@@ -19,7 +18,7 @@ public class ProcessListLoader {
             //Rozdělí řádek načtený ze souboru na sloupce oddělené středníkem
             String[] output = line.split(";");
             int port = Integer.parseInt(output[2]);
-            ProcessList.getProcesses().add(new Process(output[0], output[1], port));
+            processList.getProcesses().add(new Process(output[0], output[1], port));
             // přečte další řádek
             line = reader.readLine();
     }
