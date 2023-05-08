@@ -10,14 +10,15 @@ public class Main {
         //Načte na soubor Connection List který dostane na vstup.
         ConnectionList connectionList = connectionListLoader.load("D:\\Download\\ConnectionList.txt");
         ProcessList processList = processListLoader.load("D:\\Download\\ProcessList.txt");
-        for (Connection connection : connectionList.getConnections()) {
-            System.out.println(connection.getServerName());
-            System.out.println(connection.getDestinationLocation());
-            System.out.println(connection.getDestinationServer());
-        }
-        for (Process process : processList.getProcesses()) {
-            System.out.println(process.getProcessName());
-            System.out.println(process.getHost());
-        }
+       // for (Connection connection : connectionList.getConnections()) {
+       //     System.out.println(connection.getServerName());
+       //     System.out.println(connection.getDestinationLocation());
+       //     System.out.println(connection.getDestinationServer());
+       // }
+       // for (Process process : processList.getProcesses()) {
+       //     System.out.println(process.getProcessName());
+       //     System.out.println(process.getHost());
+       // }
+        checker.check(processList, connectionList);
     }
 }
