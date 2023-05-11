@@ -51,6 +51,7 @@ public class Checker {
             if (countconnection == 0){
                 Connection connection = new Connection(" "," ", " ",process.getHost()," "," ", process.getPort());
                 result.getMissingServers().add(connection);
+                //s
             }
         }
         return null;
