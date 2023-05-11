@@ -54,6 +54,6 @@ public class Checker {
                 //s
             }
         }
-        return null;
+        return  result;
     }
 }

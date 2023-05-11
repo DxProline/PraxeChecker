@@ -20,5 +20,6 @@ public class Main {
        //     System.out.println(process.getHost());
        // }
         checker.check(processList, connectionList);
+        //TODO Zachytit výsledný result a vypsat jeho obsah na obrazovku
     }
 }
