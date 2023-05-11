@@ -23,16 +23,14 @@ public class Checker {
                 if (compare(process, connection) == true){
                     //zvedne se jen tehdy o 1 když daný proces používá danou conectionu
                     countprocess++;
-                    System.out.println(connection.getServerName() + " " + process.getProcessName());
                 }
 
 
             }
             //Nenašel se ani jeden process který používá tuto connectionu
             if (countprocess == 0){
-                //TODO Přidat do resultu do sekce removed Connectionu
+                result.getRemovedServers().add(connection);
             }
-
         }
         return null;
     }
