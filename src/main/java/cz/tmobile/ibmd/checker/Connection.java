@@ -19,6 +19,19 @@ public class Connection {
   this.port = port;
  }
 
+ @Override
+ public String toString() {
+  return "Connection{" +
+          "serverName='" + serverName + '\'' +
+          ", sourceServer='" + sourceServer + '\'' +
+          ", sourceLocation='" + sourceLocation + '\'' +
+          ", destinationServer='" + destinationServer + '\'' +
+          ", destinationLocation='" + destinationLocation + '\'' +
+          ", portType='" + portType + '\'' +
+          ", port=" + port +
+          '}';
+ }
+
  public String getServerName() {
   return serverName;
  }

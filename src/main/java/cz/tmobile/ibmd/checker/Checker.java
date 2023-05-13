@@ -10,6 +10,8 @@ public class Checker {
             }
         }
         //TODO Porovnat případ kdy destination server obsahuje více IP adres odělených znakem |
+
+
         //TODO případy kdy destination server obsahuje celý rozsah IP adres např.: 10.238.0.20 - 10.238.0.30
         //TODO případy kdy: 10.238.0.40-50
             //false = Tahle connectiona se nepoužívá v tomhle procesu
