@@ -1,20 +1,39 @@
 package cz.tmobile.ibmd.checker;
 
+import java.net.InetAddress;
+
 public class Checker {
     //Vrací true pokud používá daný proces danou connectionu
-    private Boolean compare(Process process, Connection connection){
+    private Boolean compare(Process process, Connection connection) {
         //Hlavní mozek celého porovnání provná dva Stringy
-        if (process.getHost().equals(connection.getDestinationServer())){
-            if (process.getPort().equals(connection.getPort())){
+        if (process.getHost().equals(connection.getDestinationServer())) {
+            if (process.getPort().equals(connection.getPort())) {
                 return true;
             }
         }
-        //TODO Porovnat případ kdy destination server obsahuje více IP adres odělených znakem |
-
-
+        //Porovná případ kdy destination server obsahuje více IP adres odělených znakem |
+        if (connection.getDestinationServer().contains("|")){
+            // [] = Povolené znaky
+            String[] output = connection.getDestinationServer().split("[|]");
+            for (String ipAddress : output) {
+                System.out.println(" " + ipAddress);
+                if (process.getHost().equals(ipAddress)) {
+                    if (process.getPort().equals(connection.getPort())) {
+                        return true;
+                    }
+                }
+            }
+        }
         //TODO případy kdy destination server obsahuje celý rozsah IP adres např.: 10.238.0.20 - 10.238.0.30
+        if (connection.getDestinationServer().contains(" - ")){
+            String[] output = connection.getDestinationServer().split(" - ");
+
+        }
+
+
         //TODO případy kdy: 10.238.0.40-50
-            //false = Tahle connectiona se nepoužívá v tomhle procesu
+
+        //false = Tahle connectiona se nepoužívá v tomhle procesu
         return false;
     }
     public Result check(ProcessList processList, ConnectionList connectionList){
