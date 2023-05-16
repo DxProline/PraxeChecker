@@ -42,13 +42,47 @@ public class Checker {
         if (connection.getDestinationServer().contains(" - ")){
             String[] ipBorder = connection.getDestinationServer().split(" - ");
 
-
-
-
+            //Určení minimální hranice
+            long min = convertIpAddressToNumber(ipBorder[0]);
+            //Určení maximální hranice
+            long max = convertIpAddressToNumber(ipBorder[1]);
+            //Převedení IP adresy procesu na číslo
+            long ipAddressProcess = convertIpAddressToNumber(process.getHost());
+            //Určení zda IP adresa procesu leží někde mezi dolní a horní hranicí
+            if (ipAddressProcess >= min && ipAddressProcess <= max){
+                //Kotrola portů
+                if (process.getPort().equals(connection.getPort())) {
+                    return true;
+                }
+            }   else {
+                return false;
+            }
         }
 
 
-        //TODO případy kdy: 10.238.0.40-50
+        //případy kdy: 10.238.0.40-50
+        // 10.238.0.40 - 50 => 10.238.0.40 - 10.238.0.50
+        if (connection.getDestinationServer().contains("-")){
+            String[] ipBorder = connection.getDestinationServer().split("-");
+
+            String[] output = ipBorder[0].split("[.]");
+            //Určení minimální hranice
+            long min = convertIpAddressToNumber(ipBorder[0]);
+            //Určení maximální hranice
+            long max = convertIpAddressToNumber(output[0]+ "." + output[1] + "." + output[2] + "." + ipBorder[1]);
+            //Převedení IP adresy procesu na číslo
+            long ipAddressProcess = convertIpAddressToNumber(process.getHost());
+            //Určení zda IP adresa procesu leží někde mezi dolní a horní hranicí
+            if (ipAddressProcess >= min && ipAddressProcess <= max){
+                //Kotrola portů
+                if (process.getPort().equals(connection.getPort())) {
+                    return true;
+                }
+            }   else {
+                return false;
+            }
+        }
+
 
         //false = Tahle connectiona se nepoužívá v tomhle procesu
         return false;
