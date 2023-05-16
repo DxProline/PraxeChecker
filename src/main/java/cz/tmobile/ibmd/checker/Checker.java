@@ -3,6 +3,21 @@ package cz.tmobile.ibmd.checker;
 import java.net.InetAddress;
 
 public class Checker {
+    // v Případě že dosáhne větčích hodnot než 2 000 000 000 použít Long
+    private Long convertIpAddressToNumber(String ipAddress){
+        //případ/podmínka kdy destination server obsahuje celý rozsah IP adres např.: 10.238.0.20 - 10.238.0.30
+
+        String[] output = ipAddress.split("[.]");
+        int n0 = Integer.parseInt(output[0]);
+        int n1= Integer.parseInt(output[1]);
+        int n2= Integer.parseInt(output[2]);
+        int n3= Integer.parseInt(output[3]);
+
+        //hlavní čítač převodu na celé číslo
+        long ipAddressAsANumber = n3 +n2 * 1000 + n1* 1000000 + n0 * 1000000000;
+        return ipAddressAsANumber;
+    }
+
     //Vrací true pokud používá daný proces danou connectionu
     private Boolean compare(Process process, Connection connection) {
         //Hlavní mozek celého porovnání provná dva Stringy
@@ -16,7 +31,6 @@ public class Checker {
             // [] = Povolené znaky
             String[] output = connection.getDestinationServer().split("[|]");
             for (String ipAddress : output) {
-                System.out.println(" " + ipAddress);
                 if (process.getHost().equals(ipAddress)) {
                     if (process.getPort().equals(connection.getPort())) {
                         return true;
@@ -24,9 +38,12 @@ public class Checker {
                 }
             }
         }
-        //TODO případy kdy destination server obsahuje celý rozsah IP adres např.: 10.238.0.20 - 10.238.0.30
+        //Rozdělení - a rozdělení . od  případu 10.238.0.20 - 10.238.0.30
         if (connection.getDestinationServer().contains(" - ")){
-            String[] output = connection.getDestinationServer().split(" - ");
+            String[] ipBorder = connection.getDestinationServer().split(" - ");
+
+
+
 
         }
 
