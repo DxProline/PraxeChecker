@@ -8,10 +8,10 @@ public class Checker {
         //případ/podmínka kdy destination server obsahuje celý rozsah IP adres např.: 10.238.0.20 - 10.238.0.30
 
         String[] output = ipAddress.split("[.]");
-        int n0 = Integer.parseInt(output[0]);
-        int n1= Integer.parseInt(output[1]);
-        int n2= Integer.parseInt(output[2]);
-        int n3= Integer.parseInt(output[3]);
+        Long n0 = Long.parseLong(output[0]);
+        Long n1 = Long.parseLong(output[1]);
+        Long n2 = Long.parseLong(output[2]);
+        Long n3 = Long.parseLong(output[3]);
 
         //hlavní čítač převodu na celé číslo
         long ipAddressAsANumber = n3 +n2 * 1000 + n1* 1000000 + n0 * 1000000000;
@@ -49,14 +49,13 @@ public class Checker {
             //Převedení IP adresy procesu na číslo
             long ipAddressProcess = convertIpAddressToNumber(process.getHost());
             //Určení zda IP adresa procesu leží někde mezi dolní a horní hranicí
-            if (ipAddressProcess >= min && ipAddressProcess <= max){
+            if (ipAddressProcess >= min && ipAddressProcess <= max) {
                 //Kotrola portů
                 if (process.getPort().equals(connection.getPort())) {
                     return true;
                 }
-            }   else {
-                return false;
             }
+            return false;
         }
 
 
