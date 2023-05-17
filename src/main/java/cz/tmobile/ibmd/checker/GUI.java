@@ -112,13 +112,9 @@ public class GUI extends JFrame {
                 // Ukáže uložený Soubor
                 int r = j.showOpenDialog(null);
                 // Pokud uživatel vybere soubor
-                if (r == JFileChooser.APPROVE_OPTION)
-
-                {
+                if (r == JFileChooser.APPROVE_OPTION) {
                     // Vybere Soubor ConnectionList který zachytí do paměti
                     labelConnection.setText(j.getSelectedFile().getAbsolutePath());
-                    // Vybere Soubor ProcessList který zachytí do paměti
-                    labelProcess.setText(j.getSelectedFile().getAbsolutePath());
                 }
             }
 
@@ -133,9 +129,7 @@ public class GUI extends JFrame {
                 // Ukáže uložený Soubor
                 int r = j.showOpenDialog(null);
                 // Pokud uživatel vybere soubor
-                if (r == JFileChooser.APPROVE_OPTION)
-
-                {
+                if (r == JFileChooser.APPROVE_OPTION) {
                     // Vybere Soubor ProcessList který zachytí do paměti
                     labelProcess.setText(j.getSelectedFile().getAbsolutePath());
                 }

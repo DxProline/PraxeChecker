@@ -9,8 +9,8 @@ public class Main {
         ProcessListLoader processListLoader = new ProcessListLoader();
         Checker checker = new Checker();
         //Načte na soubor Connection List který dostane na vstup.
-        ConnectionList connectionList = connectionListLoader.load("C:\\Users\\jenda\\OneDrive\\Dokumenty\\ConnectionList.txt");
-        ProcessList processList = processListLoader.load("C:\\Users\\jenda\\OneDrive\\Dokumenty\\ProcessList.txt");
+        ConnectionList connectionList = connectionListLoader.load(args[0]);
+        ProcessList processList = processListLoader.load(args[1]);
         // for (Connection connection : connectionList.getConnections()) {
         //     System.out.println(connection.getServerName());
         //     System.out.println(connection.getDestinationLocation());
