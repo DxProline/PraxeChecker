@@ -77,8 +77,6 @@ public class Checker {
                 if (process.getPort().equals(connection.getPort())) {
                     return true;
                 }
-            }   else {
-                return false;
             }
         }
 
