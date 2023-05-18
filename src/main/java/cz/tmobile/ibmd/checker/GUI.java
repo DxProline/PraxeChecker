@@ -18,6 +18,8 @@ public class GUI extends JFrame {
 
     private  JLabel labelExport;
 
+    private Result result;
+
     String oldvalue = "0";
     String operation;
     GridBagConstraints g;
@@ -37,6 +39,7 @@ public class GUI extends JFrame {
         buttonConnection = new JButton("Enter ConnectionList to Compare");
         buttonProcess = new JButton("Enter ProcessList to Compare");
         buttonStartCompare = new JButton("Start Compare");
+        buttonExport = new JButton("Start Export");
 
 
         labelresult = new JLabel();
@@ -59,11 +62,20 @@ public class GUI extends JFrame {
         //g.gridwidth = 3;
         //pane.add(jFileChooserProcess,g);
 
+
         g.gridx = 1;
         g.gridy = 1;
         g.fill = 1;
         g.gridwidth = 1;
         pane.add(buttonConnection,g);
+
+
+        g.gridx = 1;
+        g.gridy = 6;
+        g.fill = 1;
+        g.gridwidth = 1;
+        pane.add(buttonExport,g);
+
 
         g.gridx = 2;
         g.gridy = 1;
@@ -161,7 +173,7 @@ public class GUI extends JFrame {
                 }
 
                 //Zachytí výsledek checkeru
-                Result result = checker.check(processList, connectionList);
+                result = checker.check(processList, connectionList);
                 labelresult.setText("Výsledek: " + result.getMissingServers().size() + " Chybějící,  " + result.getRemovedServers().size() + " Odstraněné");
             }
 
@@ -173,21 +185,21 @@ public class GUI extends JFrame {
 
 
                 JFileChooser j = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-                // Ukáže uložený Soubor
-                int r = j.showOpenDialog(null);
+                // Zpřístupní uživateli vybrat Soubor
+                int r = j.showSaveDialog(null);
                 // Pokud uživatel vybere soubor
                 if (r == JFileChooser.APPROVE_OPTION) {
                     // Vybere Soubor ProcessList který zachytí do paměti
-                    labelProcess.setText(j.getSelectedFile().getAbsolutePath());
 
                     try {
-                        FileWriter myWriter = new FileWriter("filename.txt");
-                        myWriter.write("Files in Java might be tricky, but it is fun enough!");
-                        myWriter.close();
-                        System.out.println("Successfully wrote to the file.");
+                        String filename = j.getSelectedFile().getAbsolutePath();
+                        Exporter exporter = new Exporter();
+                        exporter.export(result, filename);
+                        JOptionPane.showMessageDialog(pane, " Soubor byl úspěšně vyexportován");
                     } catch (IOException ex) {
-                        System.out.println("An error occurred.");
-                        ex.printStackTrace();
+                        JOptionPane.showMessageDialog(pane, " Došlo k chybě při exportu");
+                        return;
+
                     }
                 }
             }

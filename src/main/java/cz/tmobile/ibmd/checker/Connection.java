@@ -21,15 +21,14 @@ public class Connection {
 
  @Override
  public String toString() {
-  return "Connection{" +
-          "serverName='" + serverName + '\'' +
-          ", sourceServer='" + sourceServer + '\'' +
-          ", sourceLocation='" + sourceLocation + '\'' +
-          ", destinationServer='" + destinationServer + '\'' +
-          ", destinationLocation='" + destinationLocation + '\'' +
-          ", portType='" + portType + '\'' +
-          ", port=" + port +
-          '}';
+  return
+          serverName + ';' +
+          sourceServer + ';' +
+          sourceLocation + ';' +
+          destinationServer + ';' +
+           destinationLocation + ';' +
+          portType + ';' +
+          port;
  }
 
  public String getServerName() {
