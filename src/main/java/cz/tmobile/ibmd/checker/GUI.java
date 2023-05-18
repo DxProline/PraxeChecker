@@ -28,7 +28,7 @@ public class GUI extends JFrame {
 
     public GUI(String title) throws HeadlessException {
         super(title);
-        setSize(800,800);
+        setSize(600,200);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
         setLocationRelativeTo(null);
@@ -36,10 +36,10 @@ public class GUI extends JFrame {
         pane.setLayout(new GridBagLayout());
 
         g = new GridBagConstraints();
-        buttonConnection = new JButton("Enter ConnectionList to Compare");
-        buttonProcess = new JButton("Enter ProcessList to Compare");
-        buttonStartCompare = new JButton("Start Compare");
-        buttonExport = new JButton("Start Export");
+        buttonConnection = new JButton("Vlož ConnectionList pro kontrolu");
+        buttonProcess = new JButton("Vlož ProcessList pro kontrolu");
+        buttonStartCompare = new JButton("Začni Porovnávat");
+        buttonExport = new JButton("Začni exportovat");
 
 
         labelresult = new JLabel();
@@ -106,7 +106,7 @@ public class GUI extends JFrame {
         pane.add(labelresult,g);
 
 
-        labelresult.setText("Result =");
+        labelresult.setText("Výsledek =");
 
         setContentPane(pane);
         setVisible(true);
@@ -183,7 +183,10 @@ public class GUI extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-
+                if (result == null ){
+                    JOptionPane.showMessageDialog(pane, "Nejdříve vložte ConnectionList a ProcessList");
+                    return;
+                }
                 JFileChooser j = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
                 // Zpřístupní uživateli vybrat Soubor
                 int r = j.showSaveDialog(null);
@@ -195,8 +198,10 @@ public class GUI extends JFrame {
                         String filename = j.getSelectedFile().getAbsolutePath();
                         Exporter exporter = new Exporter();
                         exporter.export(result, filename);
+                        // Dialog k oznámení chyby či výsledku
                         JOptionPane.showMessageDialog(pane, " Soubor byl úspěšně vyexportován");
                     } catch (IOException ex) {
+                        // Dialog k oznámení chyby či výsledku
                         JOptionPane.showMessageDialog(pane, " Došlo k chybě při exportu");
                         return;
 
