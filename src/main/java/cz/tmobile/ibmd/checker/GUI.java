@@ -2,6 +2,7 @@ package cz.tmobile.ibmd.checker;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
@@ -48,7 +49,13 @@ public class GUI extends JFrame {
         labelConnection.setText(labelConnection.getText()+" ");
         labelProcess = new JLabel();
         labelProcess.setText(labelProcess.getText()+" ");
-
+        //Nastavení Ikony pro okno
+        try {
+            //Vytvoření ikony pro aplikaci
+            this.setIconImage(ImageIO.read( ClassLoader.getSystemResource( "ConnectionCheckerLogo.png" ) ));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
 
         //g.gridx = 2;
