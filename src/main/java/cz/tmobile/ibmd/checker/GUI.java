@@ -166,8 +166,13 @@ public class GUI extends JFrame {
                 ConnectionList connectionList = null;
                 try {
                     connectionList = connectionListLoader.load(labelConnection.getText());
+
                 } catch (IOException ex) {
-                    JOptionPane.showMessageDialog(pane, " Došlo k chybě při načítání Connection Listu");
+                    JOptionPane.showMessageDialog(pane, " Nepodařilo se nalézt nebo otevřít soubor ConnectionList");
+                    return;
+                    //Zachytí všechny zbývající druhy chyb kromě IO = Input output
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(pane, " Došlo k chybě při načítání Connection Listu na řádku: " + connectionListLoader.getLineCounter());
                     return;
                 }
 
@@ -175,7 +180,11 @@ public class GUI extends JFrame {
                 try {
                     processList = processListLoader.load(labelProcess.getText());
                 } catch (IOException ex) {
-                    JOptionPane.showMessageDialog(pane, " Došlo k chybě při načítání Process Listu");
+                    JOptionPane.showMessageDialog(pane, "Nepodařilo se nalézt nebo otevřít soubor Process List");
+                    return;
+                    //Zachytí všechny zbývající druhy chyb kromě IO = Input output
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(pane, "Došlo k chybě při načítání Process Listu na řádku: " + processListLoader.getLineCounter());
                     return;
                 }
 

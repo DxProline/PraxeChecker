@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class ProcessListLoader {
+    private int lineCounter;
     // Funkce která načítá soubor pomocí BufferedReadru
     public ProcessList load(String filename) throws IOException {
         BufferedReader reader;
@@ -12,6 +13,7 @@ public class ProcessListLoader {
         // Vytvořen objekt BufferedReader
         reader = new BufferedReader(new FileReader(filename));
         String line = reader.readLine();
+        lineCounter++;
 
         //Null = dokud nedosáhne konec souboru
         while (line != null) {
@@ -21,7 +23,12 @@ public class ProcessListLoader {
             processList.getProcesses().add(new Process(output[0], output[1], port));
             // přečte další řádek
             line = reader.readLine();
-    }
+            lineCounter++;
+        }
         return processList;
+    }
+
+    public int getLineCounter() {
+        return lineCounter;
     }
 }
