@@ -168,7 +168,7 @@ public class GUI extends JFrame {
                     connectionList = connectionListLoader.load(labelConnection.getText());
 
                 } catch (IOException ex) {
-                    JOptionPane.showMessageDialog(pane, " Nepodařilo se nalézt nebo otevřít soubor ConnectionList nebo ProcessList");
+                    JOptionPane.showMessageDialog(pane, " Nepodařilo se nalézt nebo otevřít soubor ConnectionList");
                     return;
                     //Zachytí všechny zbývající druhy chyb kromě IO = Input output
                 } catch (Exception ex) {
