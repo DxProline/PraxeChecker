@@ -7,9 +7,9 @@ public class Connection {
  private String destinationServer;
  private String destinationLocation;
  private String portType;
- private Integer port;
+ private String port;
 
- public Connection(String serverName, String sourceServer, String sourceLocation, String destinationServer, String destinationLocation, String portType, Integer port) {
+ public Connection(String serverName, String sourceServer, String sourceLocation, String destinationServer, String destinationLocation, String portType, String port) {
   this.serverName = serverName;
   this.sourceServer = sourceServer;
   this.sourceLocation = sourceLocation;
@@ -79,11 +79,11 @@ public class Connection {
   this.portType = portType;
  }
 
- public Integer getPort() {
+ public String getPort() {
   return port;
  }
 
- public void setPort(Integer port) {
+ public void setPort(String port) {
   this.port = port;
  }
 }

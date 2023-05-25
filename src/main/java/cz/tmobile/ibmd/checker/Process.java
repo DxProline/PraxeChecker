@@ -6,9 +6,9 @@ import java.util.List;
 public class Process {
     private String processName;
     private String host;
-    private Integer port;
+    private String port;
 
-    public Process(String processName, String host, Integer port) {
+    public Process(String processName, String host, String port) {
         this.processName = processName;
         this.host = host;
         this.port = port;
@@ -30,11 +30,11 @@ public class Process {
         this.host = host;
     }
 
-    public Integer getPort() {
+    public String getPort() {
         return port;
     }
 
-    public void setPort(Integer port) {
+    public void setPort(String port) {
         this.port = port;
     }
 }

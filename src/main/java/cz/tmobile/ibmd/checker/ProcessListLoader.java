@@ -19,8 +19,7 @@ public class ProcessListLoader {
         while (line != null) {
             //Rozdělí řádek načtený ze souboru na sloupce oddělené středníkem
             String[] output = line.split(";");
-            int port = Integer.parseInt(output[2]);
-            processList.getProcesses().add(new Process(output[0], output[1], port));
+            processList.getProcesses().add(new Process(output[0], output[1], output[2]));
             // přečte další řádek
             line = reader.readLine();
             lineCounter++;
