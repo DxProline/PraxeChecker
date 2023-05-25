@@ -23,7 +23,6 @@ public class ConnectionListLoader {
 
             //Rozdělí řádek načtený ze souboru na sloupce oddělené středníkem
             String[] output = line.split(";");
-
             connectionList.getConnections().add(new Connection(output[0], output[1], output[2],output[3], output[4], output[5], output[6]));
             // přečte další řádek
             line = reader.readLine();

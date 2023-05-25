@@ -1,7 +1,4 @@
 package cz.tmobile.ibmd.checker;
-
-import java.net.InetAddress;
-
 public class Checker {
     // v Případě že dosáhne větčích hodnot než 2 000 000 000 použít Long
     private Long convertIpAddressToNumber(String ipAddress){
@@ -14,9 +11,11 @@ public class Checker {
         Long n3 = Long.parseLong(output[3]);
 
         //hlavní čítač převodu na celé číslo
-        long ipAddressAsANumber = n3 +n2 * 1000 + n1* 1000000 + n0 * 1000000000;
+        //Např: 10.238.0.20 --> 10 * 100000000 + 238 * 1000000 + 0 * 1000 + 20 = 010238000020
+        long ipAddressAsANumber = n0 * 1000000000 + n1* 1000000 + n2 * 1000 + n3;
         return ipAddressAsANumber;
     }
+    //TODO Obalit do try catch Compare pro vyřešení problému Connection Listu s chybou.
 
     //Vrací true pokud používá daný proces danou connectionu
     private Boolean compare(Process process, Connection connection) {
