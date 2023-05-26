@@ -15,7 +15,6 @@ public class Checker {
         long ipAddressAsANumber = n0 * 1000000000 + n1* 1000000 + n2 * 1000 + n3;
         return ipAddressAsANumber;
     }
-    //TODO Obalit do try catch Compare pro vyřešení problému Connection Listu s chybou.
 
     //Vrací true pokud používá daný proces danou connectionu
     private Boolean compare(Process process, Connection connection) {
@@ -25,6 +24,7 @@ public class Checker {
                 return true;
             }
         }
+
         //Porovná případ kdy destination server obsahuje více IP adres odělených znakem |
         if (connection.getDestinationServer().contains("|")){
             // [] = Povolené znaky
@@ -37,47 +37,56 @@ public class Checker {
                 }
             }
         }
-        //Rozdělení - a rozdělení . od  případu 10.238.0.20 - 10.238.0.30
-        if (connection.getDestinationServer().contains(" - ")){
-            String[] ipBorder = connection.getDestinationServer().split(" - ");
+        try {
+            //Rozdělení - a rozdělení . od  případu 10.238.0.20 - 10.238.0.30
+            if (connection.getDestinationServer().contains(" - ")){
+                String[] ipBorder = connection.getDestinationServer().split(" - ");
 
-            //Určení minimální hranice
-            long min = convertIpAddressToNumber(ipBorder[0]);
-            //Určení maximální hranice
-            long max = convertIpAddressToNumber(ipBorder[1]);
-            //Převedení IP adresy procesu na číslo
-            long ipAddressProcess = convertIpAddressToNumber(process.getHost());
-            //Určení zda IP adresa procesu leží někde mezi dolní a horní hranicí
-            if (ipAddressProcess >= min && ipAddressProcess <= max) {
-                //Kotrola portů
-                if (process.getPort().equals(connection.getPort())) {
-                    return true;
+                //Určení minimální hranice
+                long min = convertIpAddressToNumber(ipBorder[0]);
+                //Určení maximální hranice
+                long max = convertIpAddressToNumber(ipBorder[1]);
+                //Převedení IP adresy procesu na číslo
+                long ipAddressProcess = convertIpAddressToNumber(process.getHost());
+                //Určení zda IP adresa procesu leží někde mezi dolní a horní hranicí
+                if (ipAddressProcess >= min && ipAddressProcess <= max) {
+                    //Kotrola portů
+                    if (process.getPort().equals(connection.getPort())) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+
+            //případy kdy: 10.238.0.40-50
+            // 10.238.0.40 - 50 => 10.238.0.40 - 10.238.0.50
+            if (connection.getDestinationServer().contains("-")){
+                String[] ipBorder = connection.getDestinationServer().split("-");
+
+                String[] output = ipBorder[0].split("[.]");
+                //Určení minimální hranice
+                long min = convertIpAddressToNumber(ipBorder[0]);
+                //Určení maximální hranice
+                long max = convertIpAddressToNumber(output[0]+ "." + output[1] + "." + output[2] + "." + ipBorder[1]);
+                //Převedení IP adresy procesu na číslo
+                long ipAddressProcess = convertIpAddressToNumber(process.getHost());
+                //Určení zda IP adresa procesu leží někde mezi dolní a horní hranicí
+                if (ipAddressProcess >= min && ipAddressProcess <= max){
+                    //Kotrola portů
+                    if (process.getPort().equals(connection.getPort())) {
+                        return true;
+                    }
                 }
             }
+            //zachytí úplně všechny chyby, ke kterým může dojít při převodu IP adresy na číslo
+            //Například: Když se neskládá ze 4 čísel nebo pokud obsahuje místo číslic písmena
+        } catch (Exception exception){
+            //Je úplně jedno která z těch IP adres je špatná, connection se musí brát jako nepoužívaná
             return false;
         }
 
 
-        //případy kdy: 10.238.0.40-50
-        // 10.238.0.40 - 50 => 10.238.0.40 - 10.238.0.50
-        if (connection.getDestinationServer().contains("-")){
-            String[] ipBorder = connection.getDestinationServer().split("-");
-
-            String[] output = ipBorder[0].split("[.]");
-            //Určení minimální hranice
-            long min = convertIpAddressToNumber(ipBorder[0]);
-            //Určení maximální hranice
-            long max = convertIpAddressToNumber(output[0]+ "." + output[1] + "." + output[2] + "." + ipBorder[1]);
-            //Převedení IP adresy procesu na číslo
-            long ipAddressProcess = convertIpAddressToNumber(process.getHost());
-            //Určení zda IP adresa procesu leží někde mezi dolní a horní hranicí
-            if (ipAddressProcess >= min && ipAddressProcess <= max){
-                //Kotrola portů
-                if (process.getPort().equals(connection.getPort())) {
-                    return true;
-                }
-            }
-        }
 
 
         //false = Tahle connectiona se nepoužívá v tomhle procesu

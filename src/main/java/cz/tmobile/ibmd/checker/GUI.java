@@ -200,7 +200,7 @@ public class GUI extends JFrame {
             public void actionPerformed(ActionEvent e) {
 
                 if (result == null ){
-                    JOptionPane.showMessageDialog(pane, "Nejdříve vložte ConnectionList a ProcessList");
+                    JOptionPane.showMessageDialog(pane, "Nejprve klikněte na porovnávat");
                     return;
                 }
                 JFileChooser j = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
