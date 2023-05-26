@@ -126,7 +126,7 @@ public class Checker {
             }
             //Nenašel se ani jeden connection který používá daný process
             if (countconnection == 0){
-                Connection connection = new Connection(" "," ", " ",process.getHost()," "," ", process.getPort());
+                Connection connection = new Connection("","", "",process.getHost(),"","", process.getPort());
                 result.getMissingServers().add(connection);
                 //s
             }

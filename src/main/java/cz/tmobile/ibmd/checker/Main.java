@@ -14,13 +14,11 @@ public class Main {
 
         //Zachytí výsledek checkeru
         Result result = checker.check(processList, connectionList);
-        System.out.println("Missing");
         for (Connection connection : result.getMissingServers()){
-            System.out.println(connection);
+            System.out.println("Missing;" + connection);
         }
-        System.out.println("Removed");
         for (Connection connection : result.getRemovedServers()){
-            System.out.println(connection);
+            System.out.println("Removed;" + connection);
         }
     }
 }
