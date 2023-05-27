@@ -1,7 +1,7 @@
 package cz.tmobile.ibmd.checker;
 public class Checker {
     // v Případě že dosáhne větčích hodnot než 2 000 000 000 použít Long
-    private Long convertIpAddressToNumber(String ipAddress){
+    protected Long convertIpAddressToNumber(String ipAddress){
         //případ/podmínka kdy destination server obsahuje celý rozsah IP adres např.: 10.238.0.20 - 10.238.0.30
 
         String[] output = ipAddress.split("[.]");
@@ -17,7 +17,7 @@ public class Checker {
     }
 
     //Vrací true pokud používá daný proces danou connectionu
-    private Boolean compare(Process process, Connection connection) {
+    protected Boolean compare(Process process, Connection connection) {
         //Hlavní mozek celého porovnání provná dva Stringy
         if (process.getHost().equals(connection.getDestinationServer())) {
             if (process.getPort().equals(connection.getPort())) {
