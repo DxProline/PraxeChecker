@@ -1,4 +1,7 @@
-package cz.tmobile.ibmd.checker;
+package cz.tmobile.ibmd.checker.loaders;
+
+import cz.tmobile.ibmd.checker.data.Process;
+import cz.tmobile.ibmd.checker.data.ProcessList;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

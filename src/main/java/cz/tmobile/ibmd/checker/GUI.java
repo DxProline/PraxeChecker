@@ -1,12 +1,19 @@
 package cz.tmobile.ibmd.checker;
 
+import cz.tmobile.ibmd.checker.data.ConnectionList;
+import cz.tmobile.ibmd.checker.data.ProcessList;
+import cz.tmobile.ibmd.checker.data.Result;
+import cz.tmobile.ibmd.checker.loaders.ConnectionListLoader;
+import cz.tmobile.ibmd.checker.loaders.ProcessListLoader;
+import cz.tmobile.ibmd.checker.processing.Checker;
+import cz.tmobile.ibmd.checker.processing.Exporter;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
-import java.io.FileWriter;
 import java.io.IOException;
 
 

@@ -1,7 +1,9 @@
-package cz.tmobile.ibmd.checker;
+package cz.tmobile.ibmd.checker.loaders;
+
+import cz.tmobile.ibmd.checker.data.Connection;
+import cz.tmobile.ibmd.checker.data.ConnectionList;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 

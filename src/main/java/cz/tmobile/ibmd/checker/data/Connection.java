@@ -1,4 +1,4 @@
-package cz.tmobile.ibmd.checker;
+package cz.tmobile.ibmd.checker.data;
 
 public class Connection {
  private String serverName;

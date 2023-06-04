@@ -1,4 +1,8 @@
-package cz.tmobile.ibmd.checker;
+package cz.tmobile.ibmd.checker.processing;
+
+import cz.tmobile.ibmd.checker.data.*;
+import cz.tmobile.ibmd.checker.data.Process;
+
 public class Checker {
     // v Případě že dosáhne větčích hodnot než 2 000 000 000 použít Long
     protected Long convertIpAddressToNumber(String ipAddress){

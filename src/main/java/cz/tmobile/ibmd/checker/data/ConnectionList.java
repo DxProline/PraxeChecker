@@ -1,4 +1,6 @@
-package cz.tmobile.ibmd.checker;
+package cz.tmobile.ibmd.checker.data;
+
+import cz.tmobile.ibmd.checker.data.Connection;
 
 import java.util.ArrayList;
 

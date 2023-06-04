@@ -1,4 +1,4 @@
-package cz.tmobile.ibmd.checker;
+package cz.tmobile.ibmd.checker.data;
 
 import java.util.ArrayList;
 import java.util.List;

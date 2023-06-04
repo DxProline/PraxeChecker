@@ -1,5 +1,13 @@
 package cz.tmobile.ibmd.checker;
 
+import cz.tmobile.ibmd.checker.data.Connection;
+import cz.tmobile.ibmd.checker.data.ConnectionList;
+import cz.tmobile.ibmd.checker.data.ProcessList;
+import cz.tmobile.ibmd.checker.data.Result;
+import cz.tmobile.ibmd.checker.loaders.ConnectionListLoader;
+import cz.tmobile.ibmd.checker.loaders.ProcessListLoader;
+import cz.tmobile.ibmd.checker.processing.Checker;
+
 import java.io.IOException;
 
 public class Main {
