@@ -8,6 +8,8 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class ConnectionListLoader {
+    //LineCounter určuje číslo řádku který Loader Právě načetl
+    //tato hodnota se pak využívá pro hlášení na jakém řádku došlo k chybě
     private int lineCounter;
     // Funkce která načítá soubor pomocí BufferedReadru
     public ConnectionList load(String filename) throws IOException {
