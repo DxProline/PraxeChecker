@@ -10,6 +10,9 @@ import cz.tmobile.ibmd.checker.processing.Checker;
 
 import java.io.IOException;
 
+/*
+Spouštění programu v Příkazovém řádku
+ */
 public class Main {
 
     public static void main(String[] args) throws IOException {

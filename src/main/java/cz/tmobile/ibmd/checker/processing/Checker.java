@@ -15,7 +15,7 @@ public class Checker {
         Long n3 = Long.parseLong(output[3]);
 
         //hlavní čítač převodu na celé číslo
-        //Např: 10.238.0.20 --> 10 * 100000000 + 238 * 1000000 + 0 * 1000 + 20 = 010238000020
+        //Např: 10.238.0.20 --> 10 * 1 000 000 000 + 238 * 1 000 000 + 0 * 1000 + 20 = 010238000020
         long ipAddressAsANumber = n0 * 1000000000 + n1* 1000000 + n2 * 1000 + n3;
         return ipAddressAsANumber;
     }
@@ -23,18 +23,18 @@ public class Checker {
     //Vrací true pokud používá daný proces danou connectionu
     protected Boolean compare(Process process, Connection connection) {
         //Hlavní mozek celého porovnání provná dva Stringy
-        if (process.getHost().equals(connection.getDestinationServer())) {
+        if (process.getDestinationServerIpAddress().equals(connection.getDestinationServerIpAddress())) {
             if (process.getPort().equals(connection.getPort())) {
                 return true;
             }
         }
 
         //Porovná případ kdy destination server obsahuje více IP adres odělených znakem |
-        if (connection.getDestinationServer().contains("|")){
+        if (connection.getDestinationServerIpAddress().contains("|")){
             // [] = Povolené znaky
-            String[] output = connection.getDestinationServer().split("[|]");
+            String[] output = connection.getDestinationServerIpAddress().split("[|]");
             for (String ipAddress : output) {
-                if (process.getHost().equals(ipAddress)) {
+                if (process.getDestinationServerIpAddress().equals(ipAddress)) {
                     if (process.getPort().equals(connection.getPort())) {
                         return true;
                     }
@@ -43,15 +43,15 @@ public class Checker {
         }
         try {
             //Rozdělení - a rozdělení . od  případu 10.238.0.20 - 10.238.0.30
-            if (connection.getDestinationServer().contains(" - ")){
-                String[] ipBorder = connection.getDestinationServer().split(" - ");
+            if (connection.getDestinationServerIpAddress().contains(" - ")){
+                String[] ipBorder = connection.getDestinationServerIpAddress().split(" - ");
 
                 //Určení minimální hranice
                 long min = convertIpAddressToNumber(ipBorder[0]);
                 //Určení maximální hranice
                 long max = convertIpAddressToNumber(ipBorder[1]);
                 //Převedení IP adresy procesu na číslo
-                long ipAddressProcess = convertIpAddressToNumber(process.getHost());
+                long ipAddressProcess = convertIpAddressToNumber(process.getDestinationServerIpAddress());
                 //Určení zda IP adresa procesu leží někde mezi dolní a horní hranicí
                 if (ipAddressProcess >= min && ipAddressProcess <= max) {
                     //Kotrola portů
@@ -65,8 +65,8 @@ public class Checker {
 
             //případy kdy: 10.238.0.40-50
             // 10.238.0.40 - 50 => 10.238.0.40 - 10.238.0.50
-            if (connection.getDestinationServer().contains("-")){
-                String[] ipBorder = connection.getDestinationServer().split("-");
+            if (connection.getDestinationServerIpAddress().contains("-")){
+                String[] ipBorder = connection.getDestinationServerIpAddress().split("-");
 
                 String[] output = ipBorder[0].split("[.]");
                 //Určení minimální hranice
@@ -74,7 +74,7 @@ public class Checker {
                 //Určení maximální hranice
                 long max = convertIpAddressToNumber(output[0]+ "." + output[1] + "." + output[2] + "." + ipBorder[1]);
                 //Převedení IP adresy procesu na číslo
-                long ipAddressProcess = convertIpAddressToNumber(process.getHost());
+                long ipAddressProcess = convertIpAddressToNumber(process.getDestinationServerIpAddress());
                 //Určení zda IP adresa procesu leží někde mezi dolní a horní hranicí
                 if (ipAddressProcess >= min && ipAddressProcess <= max){
                     //Kotrola portů
@@ -117,7 +117,7 @@ public class Checker {
             }
         }
         for (Process process : processList.getProcesses()) {
-            //čítač Connectionů které používžá daný process
+            //čítač Connectionů které používá daný process
             Integer countconnection = 0;
             for (Connection connection : connectionList.getConnections()) {
                 // Používá danný process danou Connection == výsledek porovnání Ano
@@ -130,9 +130,8 @@ public class Checker {
             }
             //Nenašel se ani jeden connection který používá daný process
             if (countconnection == 0){
-                Connection connection = new Connection("","", "",process.getHost(),"","", process.getPort());
+                Connection connection = new Connection("","", "",process.getDestinationServerIpAddress(),"","", process.getPort());
                 result.getMissingServers().add(connection);
-                //s
             }
         }
         return  result;

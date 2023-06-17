@@ -17,6 +17,9 @@ import java.awt.*;
 import java.io.IOException;
 
 
+/*
+Spouštění programu v GUI (Grafické uživatelské rozhraní)
+ */
 public class GUI extends JFrame {
     JButton buttonConnection, buttonProcess, buttonStartCompare, buttonExport;
 
@@ -24,15 +27,8 @@ public class GUI extends JFrame {
     private JLabel labelConnection;
     private JLabel labelProcess;
 
-    private  JLabel labelExport;
-
     private Result result;
-
-    String oldvalue = "0";
-    String operation;
     GridBagConstraints g;
-    JFileChooser jFileChooserProcess = new JFileChooser();
-    JFileChooser jFileChooserConnection = new JFileChooser();
 
     public GUI(String title) throws HeadlessException {
         super(title);
@@ -172,6 +168,7 @@ public class GUI extends JFrame {
 
                 ConnectionList connectionList = null;
                 try {
+                    // Label connection ukazuje cestu kde se soubor nachází
                     connectionList = connectionListLoader.load(labelConnection.getText());
 
                 } catch (IOException ex) {
@@ -197,6 +194,7 @@ public class GUI extends JFrame {
 
                 //Zachytí výsledek checkeru
                 result = checker.check(processList, connectionList);
+                // Size vrací počet prvků v seznamu
                 labelresult.setText("Výsledek: " + result.getMissingServers().size() + " Chybějící,  " + result.getRemovedServers().size() + " Odstraněné");
             }
 
@@ -218,6 +216,7 @@ public class GUI extends JFrame {
                     // Vybere Soubor ProcessList který zachytí do paměti
 
                     try {
+                        //absolutní cesta kam se exportuje daný soubor
                         String filename = j.getSelectedFile().getAbsolutePath();
                         Exporter exporter = new Exporter();
                         exporter.export(result, filename);

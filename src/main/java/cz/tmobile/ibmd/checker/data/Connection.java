@@ -2,18 +2,18 @@ package cz.tmobile.ibmd.checker.data;
 
 public class Connection {
  private String serverName;
- private String sourceServer;
+ private String sourceIpAddress;
  private String sourceLocation;
- private String destinationServer;
+ private String destinationServerIpAddress;
  private String destinationLocation;
  private String portType;
  private String port;
 
- public Connection(String serverName, String sourceServer, String sourceLocation, String destinationServer, String destinationLocation, String portType, String port) {
+ public Connection(String serverName, String sourceIpAddress, String sourceLocation, String destinationServerIpAddress, String destinationLocation, String portType, String port) {
   this.serverName = serverName;
-  this.sourceServer = sourceServer;
+  this.sourceIpAddress = sourceIpAddress;
   this.sourceLocation = sourceLocation;
-  this.destinationServer = destinationServer;
+  this.destinationServerIpAddress = destinationServerIpAddress;
   this.destinationLocation = destinationLocation;
   this.portType = portType;
   this.port = port;
@@ -23,9 +23,9 @@ public class Connection {
  public String toString() {
   return
           serverName + ';' +
-          sourceServer + ';' +
+                  sourceIpAddress + ';' +
           sourceLocation + ';' +
-          destinationServer + ';' +
+                  destinationServerIpAddress + ';' +
            destinationLocation + ';' +
           portType + ';' +
           port;
@@ -39,12 +39,12 @@ public class Connection {
   this.serverName = serverName;
  }
 
- public String getSourceServer() {
-  return sourceServer;
+ public String getSourceIpAddress() {
+  return sourceIpAddress;
  }
 
- public void setSourceServer(String sourceServer) {
-  this.sourceServer = sourceServer;
+ public void setSourceIpAddress(String sourceIpAddress) {
+  this.sourceIpAddress = sourceIpAddress;
  }
 
  public String getSourceLocation() {
@@ -55,12 +55,12 @@ public class Connection {
   this.sourceLocation = sourceLocation;
  }
 
- public String getDestinationServer() {
-  return destinationServer;
+ public String getDestinationServerIpAddress() {
+  return destinationServerIpAddress;
  }
 
- public void setDestinationServer(String destinationServer) {
-  this.destinationServer = destinationServer;
+ public void setDestinationServerIpAddress(String destinationServerIpAddress) {
+  this.destinationServerIpAddress = destinationServerIpAddress;
  }
 
  public String getDestinationLocation() {

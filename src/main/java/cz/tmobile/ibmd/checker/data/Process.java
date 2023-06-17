@@ -1,16 +1,13 @@
 package cz.tmobile.ibmd.checker.data;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Process {
     private String processName;
-    private String host;
+    private String destinationServerIpAddress;
     private String port;
 
-    public Process(String processName, String host, String port) {
+    public Process(String processName, String destinationServerIpAddress, String port) {
         this.processName = processName;
-        this.host = host;
+        this.destinationServerIpAddress = destinationServerIpAddress;
         this.port = port;
     }
 
@@ -22,12 +19,12 @@ public class Process {
         this.processName = processName;
     }
 
-    public String getHost() {
-        return host;
+    public String getDestinationServerIpAddress() {
+        return destinationServerIpAddress;
     }
 
-    public void setHost(String host) {
-        this.host = host;
+    public void setDestinationServerIpAddress(String destinationServerIpAddress) {
+        this.destinationServerIpAddress = destinationServerIpAddress;
     }
 
     public String getPort() {
