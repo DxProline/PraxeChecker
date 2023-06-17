@@ -23,10 +23,10 @@ public class Connection {
  public String toString() {
   return
           serverName + ';' +
-                  sourceIpAddress + ';' +
+          sourceIpAddress + ';' +
           sourceLocation + ';' +
-                  destinationServerIpAddress + ';' +
-           destinationLocation + ';' +
+          destinationServerIpAddress + ';' +
+          destinationLocation + ';' +
           portType + ';' +
           port;
  }
