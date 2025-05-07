@@ -1,7 +1,8 @@
-package cz.tmobile.ibmd.checker.processing;
+package cz.ibmd.checker.processing;
 
-import cz.tmobile.ibmd.checker.data.*;
-import cz.tmobile.ibmd.checker.data.Process;
+import cz.ibmd.checker.data.*;
+import cz.ibmd.checker.data.Process;
+import cz.ibmd.checker.data.*;
 
 public class Checker {
     // v Případě že dosáhne větčích hodnot než 2 000 000 000 použít Long

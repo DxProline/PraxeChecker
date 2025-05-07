@@ -1,4 +1,4 @@
-package cz.tmobile.ibmd.checker.data;
+package cz.ibmd.checker.data;
 
 public class Process {
     private String processName;

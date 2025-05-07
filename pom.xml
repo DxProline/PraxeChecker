@@ -26,7 +26,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>cz.tmobile.ibmd.checker.GUI</mainClass>
+                            <mainClass>cz.ibmd.checker.GUI</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

@@ -1,7 +1,7 @@
-package cz.tmobile.ibmd.checker.processing;
+package cz.ibmd.checker.processing;
 
-import cz.tmobile.ibmd.checker.data.Connection;
-import cz.tmobile.ibmd.checker.data.Result;
+import cz.ibmd.checker.data.Connection;
+import cz.ibmd.checker.data.Result;
 
 import java.io.FileWriter;
 import java.io.IOException;
